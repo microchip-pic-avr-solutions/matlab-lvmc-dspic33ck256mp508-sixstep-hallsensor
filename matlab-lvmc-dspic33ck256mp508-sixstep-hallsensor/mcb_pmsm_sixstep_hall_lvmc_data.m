@@ -23,7 +23,6 @@ dataType2 = fixdt(1,16,12);    % Fixed point code-generation
 
 %% System Parameters
 % Set motor parameters
-%bldc = mcb_SetPMSMMotorParameters('Teknic2310P');
 bldc.model  = 'Hurst 300';      %           // Manufacturer Model Number
 bldc.sn     = '123456';         %           // Manufacturer Model Number
 bldc.p  = 5;                    %           // Pole Pairs for the motor
@@ -33,9 +32,8 @@ bldc.Lq = 2.8698e-4;            %H          // Q-axis inductance value
 bldc.Ke = 7.3425;               %Bemf Const	// Vline_peak/krpm
 bldc.Kt = 0.274;                %Nm/A       // Torque constant
 bldc.J = 7.061551833333e-6;     %Kg-m2      // Inertia in SI units
-bldc.B = 2.636875217824e-6;     %Kg-m2/s    // Friction Co-efficient
+bldc.B = 2.636875217824e-4;     %Kg-m2/s    // Friction Co-efficient
 bldc.I_rated  = 3.42*sqrt(2);   %A      	// Rated current (phase-peak)
-bldc.QEPSlits = 1000;           %           // QEP Encoder Slits
 bldc.N_max    = 2000;           %rpm        // Max speed
 bldc.FluxPM   = (bldc.Ke)/(sqrt(3)*2*pi*1000*bldc.p/60); %PM flux computed from Ke
 bldc.T_rated  = (3/2)*bldc.p*bldc.FluxPM*bldc.I_rated;   %Get T_rated from I_rated
@@ -62,10 +60,10 @@ bldc.HallSequence = [5,4,6,2,3,1];
 
 %% Derive Characteristics
 bldc.N_base = mcb_getBaseSpeed(bldc,inverter); %rpm // Base speed of motor at given Vdc
-pmsm.N_base = mcb_getBaseSpeed(pmsm,inverter); %rpm // Base speed of motor at given Vdc
 
 %% PU System details // Set base values for pu conversion
 PU_System = mcb_SetPUSystem(bldc,inverter);
+
 %% Controller design // Get ballpark values!
 % Get PI Gains
 PI_params = mcb.internal.SetControllerParameters(bldc,inverter,PU_System,T_pwm,Ts,Ts_speed);
@@ -76,6 +74,5 @@ PI_params.delay_Position    = int32(Ts/Ts_simulink);
 PI_params.delay_Speed       = int32(Ts_speed/Ts_simulink);
 PI_params.delay_Speed1       = (PI_params.delay_IIR + 0.5*Ts)/Ts_speed;
 
-PhaseIncCalc = (100e6/(PWM_frequency*64))*(16384);
+%% Speed Mutiplication Factor
 SpeedMulti = (100e6/(5*64))*(60);
-PhaseOffset = 2730;
