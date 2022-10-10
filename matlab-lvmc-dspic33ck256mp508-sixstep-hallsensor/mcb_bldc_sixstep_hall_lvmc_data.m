@@ -1,7 +1,7 @@
 %% ************************************************************************
-% Model         :   Field Oriented Control of PMSM Using Hall Sensor
-% Description   :   Set Parameters for FOC of PMSM Using Hall Sensor
-% File name     :   mcb_pmsm_foc_hall_lvmc_data.m
+% Model         :   Hall Sensor Based Six Step Commutation of BLDC Motor
+% Description   :   Set Parameters for Hall Sensor Based Six Step Commutation of BLDC Motor
+% File name     :   mcb_bldc_sixstep_hall_lvmc_data.m
 % Copyright 2022 Microchip Technology Inc.
 
 %% Simulation Parameters
@@ -9,20 +9,22 @@
 %% Set PWM Switching frequency
 PWM_frequency 	= 20e3;    %Hz          // converter s/w freq
 T_pwm           = 1/PWM_frequency;  %s  // PWM switching time period
+Ts_motor_simscape = T_pwm/10;
 
 %% Set Sample Times
 Ts          	= T_pwm;        %sec        // simulation time step for controller
 Ts_simulink     = T_pwm/2;      %sec        // simulation time step for model simulation
 Ts_motor        = T_pwm/2;      %Sec        // Simulation sample time
 Ts_inverter     = T_pwm/2;      %sec        // simulation time step for average value inverter
-Ts_speed        = 30*Ts;        %Sec        // Sample time for speed controller
+Ts_speed        = 30*Ts;           %Sec        // Sample time for speed controller
 
 %% Set data type for controller & code-gen
-dataType = fixdt(1,16,14);    % Fixed point code-generation
+dataType = fixdt(1,16,15);    % Fixed point code-generation
 dataType2 = fixdt(1,16,12);    % Fixed point code-generation
 
 %% System Parameters
 % Set motor parameters
+% bldc = mcb_SetPMSMMotorParameters('Teknic2310P');
 bldc.model  = 'Hurst 300';      %           // Manufacturer Model Number
 bldc.sn     = '123456';         %           // Manufacturer Model Number
 bldc.p  = 5;                    %           // Pole Pairs for the motor
@@ -56,7 +58,7 @@ inverter.opampInput_R  = 532;                       %Ohms   // Opamp Input resis
 inverter.opamp_Gain    = inverter.OpampFb_Rf/inverter.opampInput_R; % // Opamp Gain used for current measurement
 
 %% Hall Sequence Calibration
-bldc.HallSequence = [5,4,6,2,3,1];
+bldc.HallSequence = [6,4,5,1,3,2];
 
 %% Derive Characteristics
 bldc.N_base = mcb_getBaseSpeed(bldc,inverter); %rpm // Base speed of motor at given Vdc
@@ -71,8 +73,5 @@ PI_params = mcb.internal.SetControllerParameters(bldc,inverter,PU_System,T_pwm,T
 %Updating delays for simulation
 PI_params.delay_Currents    = int32(Ts/Ts_simulink);
 PI_params.delay_Position    = int32(Ts/Ts_simulink);
-PI_params.delay_Speed       = int32(Ts_speed/Ts_simulink);
-PI_params.delay_Speed1       = (PI_params.delay_IIR + 0.5*Ts)/Ts_speed;
-
-%% Speed Mutiplication Factor
-SpeedMulti = (100e6/(5*64))*(60);
+PI_params.delay_Speed       = int32(Ts/Ts_simulink);
+PI_params.delay_Speed1       = (PI_params.delay_IIR + 0.5*Ts)/Ts;
