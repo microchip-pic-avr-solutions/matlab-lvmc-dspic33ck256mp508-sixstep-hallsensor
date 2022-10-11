@@ -171,7 +171,7 @@ The algorithm implementation is referenced from the Application Note AN957, “S
       <img  src="images/host5.png"></p>
     </p>
 
-6.	<p style='text-align: justify;'>In the figure below, one example is shown where two signals (measured and reference speeds) have been plotted.
+6.	<p style='text-align: justify;'>In the figure below, one example is shown where two signals (Speed_Measured and Duty_Reference) have been plotted.
 
     <p align="left">
       <img  src="images/host6.png"></p>
