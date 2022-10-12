@@ -6,7 +6,7 @@
 <p style='text-align: justify;'>
 This document describes the setup requirements for running the Hall Sensor Based Six Step Commutation of BLDC motor, using MATLAB/Simulink and dsPIC33CK Low Voltage Motor Control (LVMC) Board.
 
-The algorithm implementation is referenced from the Application Note AN957, “Sensored BLDC Motor Control Using dsPIC Digital Signal Controllers (DSCs)”.</p>
+The algorithm is described in the Application Note AN957, “Sensored BLDC Motor Control Using dsPIC Digital Signal Controllers (DSCs)”.</p>
 
 ## 2.	SUGGESTED DEMONSTRATION REQUIREMENTS
 ### 2.1 MATLAB Model Required for the Demonstration
@@ -82,22 +82,16 @@ The algorithm implementation is referenced from the Application Note AN957, “S
       <img  src="images/dem3.png"></p>
     </p>
 
-4.	<p style='text-align: justify;'>Double click on the FOC Simulink model.
-
-    <p align="left">
-      <img  src="images/dem4.png"></p>
-    </p>
-
-5.	<p style='text-align: justify;'>This opens the FOC Simulink model as shown below. In this model the algorithm can operate in two different control modes refered as <b>Openloop_Duty_Control</b> and <b>Closedloop_Speed_Control</b>. Select the mode to run the motor.  Click on the <b>"Run"</b> icon to start the simulation.
-
-    |Mode|Description|
-    | :-------------:| :-----------:|
-    |Openloop_Duty_Control|The speed of the motor controlled by controlling the duty cycle|
-    |Closedloop_Speed_Control|The speed of the motor controlled using the closedloop PI controller|
+4.	<p style='text-align: justify;'>Double click on the Simulink model (.slx file). This opens the Simulink model as shown below.
 
     <p align="left">
       <img  src="images/dem5.png"></p>
-    </p>
+    </p><p style='text-align: justify;'>In this model the algorithm can operate in two different control modes refered as <b>Openloop_Duty_Control</b> and <b>Closedloop_Speed_Control</b>. Select the mode to run the motor.  Click on the <b>"Run"</b> icon to start the simulation.
+
+    |Mode|Description|
+    | :-------------:| :-----------:|
+    |Openloop_Duty_Control|The duty cycle is varied using the potentiometer|
+    |Closedloop_Speed_Control|The speed of the motor controlled using the closedloop PI controller|
 
 6.	<p style='text-align: justify;'>To plot the simulation result, <b>Data Inspector</b> is used (refer to figure below). To observe the additional signals, log them as required. Alternatively, normal Simulink Scope can be used to plot the signals.
 
@@ -141,6 +135,14 @@ The algorithm implementation is referenced from the Application Note AN957, “S
 
     <p align="left">
       <img  src="images/dem13.png"></p>
+    </p>
+
+
+    > **_NOTE:_**
+    >To run in the Closedloop_Speed_Control select the mode on the model and repeat the steps 6 to 12
+
+    <p align="left">
+      <img  src="images/har_13.png"></p>
     </p>
 
 ## 5.	DATA VISUALIZATION USING MOTOR CONTROL BLOCKSET (MCB) HOST MODEL
