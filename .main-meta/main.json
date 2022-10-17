@@ -1,0 +1,48 @@
+{
+   "metaDataVersion":"1.0.0",
+   "category":"com.microchip.matlab.project",
+   "content":{
+      "metaDataVersion":"1.0.0",
+      "name":"com.microchip.matlab.project.matlab-lvmc-dspic33ck256mp508-sixstep-hallsensor",
+      "version":"1.0.0",
+      "displayName":"MATLAB-Simulink model for Hall Sensor Based Six Step Commutation of BLDC motor using LVMC",
+      "projectName":"matlab-lvmc-dspic33ck256mp508-sixstep-hallsensor",
+      "shortDescription":"MATLAB-Simulink model for Hall Sensor Based Six Step Commutation of BLDC motor using LVMC",
+      "simulationTool":{
+         "name":"MATLAB/Simulink",
+         "semverRange":">=2022"
+      },
+      "addonPackages":[
+                "MATLAB add on packages",
+                "Simulink",
+                "MPLAB Device blocks for Simulink",
+                "Motor Control Blockset",
+                "Embedded Coder",
+                "Fixed-Point Designer"
+      ],
+      "compiler":{
+         "name":"XC16",
+         "semverRange":"^2.0.0"
+      },
+      "dfp":{
+         "name":"dsPIC33CK-MP_DFP",
+         "semverRange":">=1.6.176"
+      },
+      "device":{
+         "metaDataVersion":"1.0.0",
+         "category":"com.microchip.portal.contentRef",
+         "content":{
+            "metaDataVersion":"1.0.0",
+            "category":"com.microchip.device",
+            "name":"dsPIC33CK256MP508",
+            "versionRange":"*"
+         }
+      },
+      "keywords":[
+         "Motor Control",
+		 "FOC",
+		 "ADC",
+		 "PWM"
+      ]
+   }
+}

@@ -1,0 +1,316 @@
+model: 
+  autotune_result: 
+    current: 
+      Ki: 612.5321846792705
+      Kp: 0.41442002622928326
+      phase_margin: 80
+      pi_phase_lag: 45
+      wc: 1478.0467784160103
+    velocity: 
+      Ki: 0.6018330918512376
+      Kp: 0.036271415387420625
+      phase_margin: 65
+      pi_phase_lag: 10
+      wc: 94.10068605825529
+  controller: {}
+  drive: 
+    configuration: 
+      displayName: "MCLV-2"
+      id: mclv2
+      name: "dsPICDEM&trade; MCLV-2 Development Board"
+      partNumber: "DM330021-2"
+      peripherals: 
+        adc: 
+          channelConfig: 
+          - channel: AN0
+            customName: MCAF_ADC_PHASEB_CURRENT
+            sign: signed
+          - channel: AN1
+            customName: MCAF_ADC_DCLINK_CURRENT
+            sign: signed
+          - channel: AN4
+            customName: MCAF_ADC_DCLINK_VOLTAGE
+            sign: unsigned
+          - channel: AN18
+            customName: MCAF_ADC_POTENTIOMETER
+            sign: unsigned
+          customName: MCAF_Motor_ADC
+          dataOutputFormat: Fractional
+          interruptDriven: false
+          requestedSharedSamplingTime_us: 10
+          resolution: 12
+        generatorMapping: 
+          interruptOnChange: none
+          isAnalogPin: false
+          isOpenDrain: false
+          isWeakPullDown: false
+          isWeakPullUp: false
+        gpio: 
+        - customName: MCAF_LED1
+          direction: output
+          id: gpio1
+          pinSelected: RE9
+        - customName: MCAF_LED2
+          direction: output
+          id: gpio2
+          pinSelected: RE8
+        - customName: MCAF_BUTTON1
+          direction: input
+          id: gpio3
+          pinSelected: RD5
+        - customName: MCAF_BUTTON2
+          direction: input
+          id: gpio4
+          pinSelected: RE7
+        oscillator: 
+          available: 
+            frequency: 8000000
+            type: resonator
+          defaultValue: "max-frequency"
+        pwm: 
+          customName: MCAF_Motor_PWM
+          frequency: 
+            defaultValue: 20000
+            maximum: 50000
+          generatorMapping: 
+          - generator: 1
+            name: MOTOR1_PHASE_A
+          - generator: 2
+            name: MOTOR1_PHASE_B
+          - generator: 3
+            name: MOTOR1_PHASE_C
+          interruptDriven: false
+          polarity: 
+            faultInput: "Active-low"
+            lower: "Active-high"
+            upper: "Active-high"
+          requestedDeadTime_us: 
+            defaultValue: 2
+            minimum: 2
+          synchronousUpdate: true
+        qei: 
+        - countsPerRevolution: 100
+          customName: MCAF_QEI
+          homePulseCaptureEnable: false
+          homePulsePolarity: true
+          id: qei1
+          indexPulseCaptureEnable: false
+          indexPulsePolarity: true
+          noiseFilterEnable: false
+          pinMapping: 
+          - direction: input
+            functionName: A
+            pin: RD1
+          - direction: input
+            functionName: B
+            pin: RD2
+          - direction: input
+            functionName: INDEX
+            pin: RD3
+          qeiOperationMode: "Modulo Count Mode"
+        timer: 
+        - customName: MC_TMR_TICK
+          id: timer1
+        - customName: MC_TMR_PROFILE
+          id: timer2
+        uart: 
+          baudRate: 4375000
+          dataSize: 8
+          interruptDriven: false
+          parity: None
+          pinMapping: 
+          - name: TX
+            pinSelected: RD6
+          - name: RX
+            pinSelected: RD7
+          stopBits: 1
+      supportedPim: 
+      - 33ep256mc506_extopamp
+      - 33ck256mp508_extopamp
+      - 33ck64mc105_extopamp
+      - 33ck64mp105_extopamp
+    estimator: 
+      omega1: 732
+      tau: 0.00219
+      type: pll
+    idc: 
+      maximum: 2.9
+      units: A
+    iout: 
+      fullscale: 4.4
+      maximum: 
+        continuous: 2.29
+      measurement: 
+        compensation: 
+          channels: 
+          - a
+          - b
+          values: 
+            a: 
+            - 0.891
+            - -0.03
+            b: 
+            - -0.004
+            - 0.965
+      time_constant: 0.0000015
+      units: A
+    metadata: 
+      id: mclv2
+      name: "dsPICDEM MCLV-2 Development Board"
+    processor: 
+      clock_frequency: 100000000
+      device: dsPIC33CK256MP508
+      familyName: dsPIC33CK256MP508
+      pim: "dspic33ep256mc506-external-opamp"
+    pwm: 
+      deadtime: 2e-12
+      duty_cycle: 
+        maximum: 0.9777
+        minimum: 0.005
+      period: 0.00005
+    sampling_time: 
+      current: 0.00005
+      velocity: 0.001
+    vbus: 24
+    vdc: 
+      fullscale: 52.8
+      maximum: 26
+      minimum: 16
+      nominal: 24
+      time_constant: 0.000188
+      units: V
+  metadata: 
+    MCC: 
+      "architecture ": melody
+      peripheral_library: 
+        name: melody
+        version: NA
+      version: "5.4.4"
+    data_model: 
+      schema_version: 2
+    motorBench: 
+      commit_id: 6062ee969f17e173cb8502638f1e3c8ee7bea3fb
+      version: "2.45.0-dev.2"
+  motor: 
+    B: 0.0000322134
+    J: 0.000018079199999999998
+    Ke: 0.037146886986834084
+    L: 0.00035898099999999997
+    Ld: 0.000368467
+    Lq: 0.000349495
+    R: 0.37160175
+    Tfr: 0.0048125
+    current: 
+      maximum: 
+        continuous: 4.53
+        peak: 4.53
+      units: A
+    id: Hurst300
+    poleCount: 10
+    rated_current: 4.53
+    velocity: 
+      maximum: 628.3185307
+      nominal: 381.5987877
+      units: "rad/s"
+  operating_range: 
+    velocity: 
+      minimum: 104.7198
+      units: "rad/s"
+      units_qualifier: mechanical
+  scdata: 
+    setup: 
+      analysis: 
+        max_motor_speed: 
+          units: "rad/s mechanical"
+          value: 2094.4
+        spindown_time: 
+          units: s
+          value: 1
+      calibration: 
+        resistor: 
+          units: ohms
+          value: 12
+        vdc: 
+          units: V
+          value: 24
+      communications: 
+        baudrate: 625000
+state: 
+  config: 
+    ui: 
+      content: 
+        "board_service-uiButtonDebounceTime": 7
+        "board_service-uiButtonLongPressTime": 2.5
+        "board_service-uiServiceTiming": 1
+        "deadtimecomp-method": none
+        "deadtimecomp-perphase-current_sign_band": 0.02
+        "deadtimecomp-perphase-feedback_gain": 0
+        "deadtimecomp-perphase-forward_gain": 0
+        "encoder-index_present": false
+        "encoder-lines": 250
+        "encoder-qei_sync-align-angle_init": -30
+        "encoder-qei_sync-align-angle_shift": 30
+        "encoder-qei_sync-align-t_align": 0.5
+        "encoder-qei_sync-align_sweep-setup_angle": 45
+        "encoder-qei_sync-align_sweep-sweep_rate_pow": 1
+        "encoder-qei_sync-method": align
+        "encoder-qei_sync-pullout-pullout_slip": 0.117
+        "encoder-tracking_loop-tau": 1.5
+        "estimator-active-atpll": false
+        "estimator-active-ideal": false
+        "estimator-active-pll": false
+        "estimator-active-qei": false
+        "estimator-type": pll
+        "fault_detect-margin_ov": 2
+        "fault_detect-margin_uv": 2
+        "fault_inject-get_tf-div0": false
+        "fault_inject-get_tf-missing_data": false
+        "fault_inject-get_tf-raise_custom_error": false
+        "fault_inject-get_tf-raise_value_error": false
+        "fault_inject-tf-div0": false
+        "fault_inject-tf-tau": 0
+        "fault_inject-tf-tf_jy": false
+        "fault_inject-tf-tf_jyex": false
+        "fault_inject-tf-tf_null": false
+        "flux_control-eqn_based-fluxweak_enable": false
+        "flux_control-eqn_based-fw-vdq_limit": 0.95
+        "flux_control-eqn_based-ilimit-id_limit": 0.7
+        "flux_control-eqn_based-ilimit-iq_limit": 0.95
+        "flux_control-eqn_based-ilimit-region_type": quadratic
+        "flux_control-eqn_based-mtpa_enable": false
+        "flux_control-method": none
+        "mcapi-iqTau": 1
+        "mcapi-isSquaredTau": 1
+        "operation-coastdown-end_velocity": 0.05
+        "operation-coastdown-time": 1.2
+        "operation-fullscale_base_ratio": 1.5
+        "operation-max_velocity_ratio": 1.25
+        "operation-min_velocity": 83.3333
+        "operation-saliency-threshold": 1.25
+        "operation-slewrate-accel": 0.5
+        "operation-slewrate-decel": 1
+        "overmodulation-vd_limit": 1
+        "overmodulation-vq_limit": 1.15
+        "pll-omega1": 116.5
+        "pll-tau": 2.19
+        "pll-velocity_filter_threshold": 1
+        "startup-Istartup": 0.75
+        "startup-damping-Imax": 0.1
+        "startup-damping-gainmax": 40
+        "startup-damping-omega_min": 0.4
+        "startup-method": classic
+        "startup-min_total_accel_time": 250
+        "startup-omega0": 0.2
+        "startup-t_align": 0
+        "startup-t_hold": 0
+        "startup-t_rampup": 25
+        "startup-theta_converge_rate": 1
+        "startup-torque_scale_accel": 0.15
+        "startup-torque_scale_slow_accel": 0.2
+      status: 
+        valid: true
+      version: 
+        MCAF: R6
+        motorBench: "???"
+        schema: 3
+updateCount: 1
